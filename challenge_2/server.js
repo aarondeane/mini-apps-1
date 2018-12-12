@@ -4,6 +4,8 @@ const PORT = 3000;
 const path = require('path');
 const bodyParser = require('body-parser');
 
+var csv = '';
+
 var jsonConverter = (jsonObj) => {
     object = JSON.parse(jsonObj);
     console.log('This is the input object', object);
@@ -37,7 +39,7 @@ var jsonConverter = (jsonObj) => {
     return csvStr;
     
 }
-
+ app.set('view engine', 'pug');
 
 app.use(express.static('client'));
 // app.use(bodyParser.json());
@@ -49,8 +51,10 @@ app.get('/sales', (req, res, next) => {
 
 app.post('/sales', (req, res, next) => {
     let jsonObj = req.body.jsoninput;
-    let csvObj = jsonConverter(jsonObj);
-    res.send(csvObj);
+    csv = jsonConverter(jsonObj);
+    console.log(csv);
+    res.send('<body><div class="header"> <h1>CSV Sales Report Generator</h1></div><form action="http://127.0.0.1:3000/sales" method="post" class="JSONinput"><div class="userinput"><label for="jsoninput">Paste your JSON data here</label><input type="text" name="jsoninput" required></div><div><button>Submit</button></div></form><div class="csvreport">csv</div><script src="app.js"></script></body>');
+
 });
 
 app.listen(PORT, ()=>
