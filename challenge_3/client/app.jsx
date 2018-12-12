@@ -1,6 +1,6 @@
 const Home = (props) => {
     return (
-        <form id="Home" onSubmit={props.handleSubmit}>
+        <form id="F1" onSubmit={props.handleSubmit}>
             <input type="submit" value="Begin Checkout" />
         </form>
     )
@@ -9,7 +9,7 @@ const Home = (props) => {
 const F1 = (props) => {
     const isComplete = props.isComplete;
     return(
-    <form id="F1" onSubmit={props.handleSubmit}>
+    <form id="F2" onSubmit={props.handleSubmit}>
         <label>
             First Name:
             <input type="text" name="firstName" onChange={props.handleChange} />
@@ -32,7 +32,7 @@ const F1 = (props) => {
 }
 
 const F2 = (props) => (
-    <form id="F2" onSubmit={props.handleSubmit}>
+    <form id="F3" onSubmit={props.handleSubmit}>
         <label>
             Address:
             <input type="text" name="address1" onChange={props.handleChange} />
@@ -62,7 +62,7 @@ const F2 = (props) => (
 )
 
 const F3 = (props) => (
-    <form id="F3" onSubmit={props.handleSubmit}>
+    <form id="Confirm" onSubmit={props.handleSubmit}>
         <label>
             Credit Card Number:
             <input type="text" name="cardnum" onChange={props.handleChange} />
@@ -93,7 +93,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            formId: 'F1',
+            formId: 'Home',
             firstName: '',
             lastName:'',
             email:'',
@@ -109,6 +109,7 @@ class App extends React.Component {
             billZip:'',
         };
         this.handleChange =  this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     };
 
     handleChange(event) {
@@ -123,7 +124,14 @@ class App extends React.Component {
     }
 
     handleSubmit(event) {
-    
+        
+        const next = event.target.id;
+
+        this.setState({
+            formId: next
+        });
+
+        event.preventDefault();
     }
 
     render() {
