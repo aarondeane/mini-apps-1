@@ -1,5 +1,15 @@
-const F1 = (props) => (
-    <form onSubmit={props.handleSubmit}>
+const Home = (props) => {
+    return (
+        <form id="Home" onSubmit={props.handleSubmit}>
+            <input type="submit" value="Begin Checkout" />
+        </form>
+    )
+}
+
+const F1 = (props) => {
+    const isComplete = props.isComplete;
+    return(
+    <form id="F1" onSubmit={props.handleSubmit}>
         <label>
             First Name:
             <input type="text" name="firstName" onChange={props.handleChange} />
@@ -18,10 +28,11 @@ const F1 = (props) => (
         </label><br/>
         <input type="submit" value="Next" />
     </form>
-)
+    );
+}
 
 const F2 = (props) => (
-    <form onSubmit={props.handleSubmit}>
+    <form id="F2" onSubmit={props.handleSubmit}>
         <label>
             Address:
             <input type="text" name="address1" onChange={props.handleChange} />
@@ -51,7 +62,7 @@ const F2 = (props) => (
 )
 
 const F3 = (props) => (
-    <form onSubmit={props.handleSubmit}>
+    <form id="F3" onSubmit={props.handleSubmit}>
         <label>
             Credit Card Number:
             <input type="text" name="cardnum" onChange={props.handleChange} />
@@ -76,10 +87,13 @@ const Confirm = (props) => {
     
 }
 
+const order = [];
+
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            formId: Home,
             firstName: '',
             lastName:'',
             email:'',
@@ -109,7 +123,7 @@ class App extends React.Component {
     }
 
     handleSubmit(event) {
-
+    
     }
 
     render() {
@@ -119,17 +133,11 @@ class App extends React.Component {
                     <h1>Welcome to the Checkout</h1>
                 </div>
                 <div className="pagecontent">
-                    <form onSubmit={this.handleSubmit}>
-                        <input type="submit" value="Checkout" />
-                    </form>
-                </div>
-                <div>
+                    <Home handleSubmit={this.handleSubmit} />
                     <F1 handleChange={this.handleChange} handleSubmit={this.handleSubmit} />                
                     <F2 handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
                     <F3 handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
                 </div>
-                
-                
             </div>
         );
     }
