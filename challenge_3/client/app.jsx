@@ -93,7 +93,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            formId: Home,
+            formId: 'F1',
             firstName: '',
             lastName:'',
             email:'',
@@ -127,17 +127,29 @@ class App extends React.Component {
     }
 
     render() {
+        let formId = this.state.formId;
+        let currentPage;
+        
+        switch(formId) {
+            case 'Home':
+            currentPage = <Home handleSubmit={this.handleSubmit} />;
+            break;
+            case 'F1':
+            currentPage = <F1 handleChange={this.handleChange} handleSubmit={this.handleSubmit} />;
+            break;
+            case 'F2':              
+            currentPage = <F2 handleChange={this.handleChange} handleSubmit={this.handleSubmit} />;
+            break;
+            case 'F3':
+            currentPage = <F3 handleChange={this.handleChange} handleSubmit={this.handleSubmit} />;
+            break;
+            case 'Confirm':
+            break;
+        }
+
         return (
-            <div className="main">
-                <div className="header">
-                    <h1>Welcome to the Checkout</h1>
-                </div>
-                <div className="pagecontent">
-                    <Home handleSubmit={this.handleSubmit} />
-                    <F1 handleChange={this.handleChange} handleSubmit={this.handleSubmit} />                
-                    <F2 handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
-                    <F3 handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
-                </div>
+            <div className="pagecontent">
+                {currentPage}
             </div>
         );
     }
