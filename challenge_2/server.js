@@ -7,7 +7,10 @@ const bodyParser = require('body-parser');
 const salesData = [];
 
 const jsonConverter = (object) => {
-    
+    object = JSON.parse(object);
+    const fields = Object.keys(object);
+    const csvStr = fields.join(',');
+    return csvStr;
 }
 
 app.use(express.static('client'));
@@ -19,7 +22,7 @@ app.get('/sales', (req, res, next) => {
 });
 
 app.post('/sales', (req, res, next) => {
-    res.send(req.body);
+    res.send(jsonConverter(req.body.jsoninput));
 });
 
 app.listen(PORT, ()=>
