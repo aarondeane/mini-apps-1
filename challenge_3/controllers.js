@@ -8,7 +8,7 @@ const addOrder = (req, res) => {
     console.log('this is the params', params)
     db.query(query, params, (err, results) => {
         if(err) {
-            res.status(501).send(err);
+            res.status(501).send(JSON.stringify(err));
         } else {
             res.status(201).send();
         }
@@ -18,3 +18,7 @@ const addOrder = (req, res) => {
 module.exports = {
     addOrder,
 };
+
+
+
+const query = 'INSERT INTO orders (firstname, lastname, email, password, address1, address2, city, state, zip, phone, cardnum, expire, cvv, billzip) VALUES ("aaron", "deane", "aaronmdeane@gmail.com", "password", "44 Tehama", address2, "San Francisco", "CA", "90210", phone, cardnum, expire, cvv, billzip);';
