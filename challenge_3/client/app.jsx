@@ -24,7 +24,7 @@ const F1 = (props) => {
         </label><br/>
         <label>
             Password:
-            <input type="text" name="pw" onChange={props.handleChange} />
+            <input type="text" name="password" onChange={props.handleChange} />
         </label><br/>
         <input type="submit" value="Next" />
     </form>
@@ -69,7 +69,7 @@ const F3 = (props) => (
         </label><br/>
         <label>
             Expiration:
-            <input type="text" name="expiration" onChange={props.handleChange} />
+            <input type="text" name="expire" onChange={props.handleChange} />
         </label><br/>
         <label>
             CVV:

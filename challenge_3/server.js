@@ -3,10 +3,12 @@ const express = require('express');
 const app = express();
 const PORT = 3001;
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 
 // Setup middleware
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser());
+app.use(morgan('tiny'))
 
 // Serve up static files
 app.use(express.static('public'));
