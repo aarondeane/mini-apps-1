@@ -54,7 +54,7 @@ const F2 = (props) => (
             <input type="text" name="zip" onChange={props.handleChange} />
         </label><br/>
         <label>
-            Phone Number:
+            Tel:
             <input type="text" name="phone" onChange={props.handleChange} />
         </label><br/>
         <input type="submit" value="Next" />
@@ -77,17 +77,36 @@ const F3 = (props) => (
         </label><br/>
         <label>
             Billing Zip:
-            <input type="text" name="billzip" onChange={props.handleChange} />
+            <input type="text" name="billZip" onChange={props.handleChange} />
         </label><br/>
         <input type="submit" value="Next" />
     </form>
 )
 
-const Confirm = (props) => {
-    
-}
-
-const order = [];
+const Confirm = (props) => (
+    <form id="Home" onSubmit={props.handlePost}>
+        <label className="confirmMsg">Please Confirm Your Information Before Purchasing</label><br/>
+        <label>First Name:</label>
+        <span>{props.info.firstName}</span><br />
+        <label>Last Name:</label>
+        <span>{props.info.lastName}</span><br />
+        <label>Email:</label>
+        <span>{props.info.email}</span><br />
+        <label>Address:</label>
+        <span>{props.info.address1}, {props.info.address2}</span><br />
+        <label>City:</label>
+        <span>{props.info.city}</span><br />
+        <label>State:</label>
+        <span>{props.info.state}</span><br />
+        <label>Zip Code:</label>
+        <span>{props.info.zip}</span><br />
+        <label>Tel:</label>
+        <span>{props.info.phone}</span><br />
+        <label>Billing Zip:</label>
+        <span>{props.info.billZip}</span><br />
+        <input type="submit" value="Purchase" />
+    </form>
+)
 
 class App extends React.Component {
     constructor(props) {
@@ -98,7 +117,8 @@ class App extends React.Component {
             lastName:'',
             email:'',
             password:'',
-            address:'',
+            address1:'',
+            address2:'',
             city:'',
             state:'',
             zip:'',
@@ -110,6 +130,7 @@ class App extends React.Component {
         };
         this.handleChange =  this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handlePost = this.handlePost.bind(this);
     };
 
     handleChange(event) {
@@ -124,14 +145,46 @@ class App extends React.Component {
     }
 
     handleSubmit(event) {
-        
-        const next = event.target.id;
-
+        let next = event.target.id;    
+        event.preventDefault();
         this.setState({
             formId: next
         });
+    }
 
+    handlePost(event) {
         event.preventDefault();
+        let next = event.target.id;
+        let order = {
+            'First Name': this.state.firstName,
+            'Last Name':this.state.firstName,
+            'Email':this.state.firstName,
+            password:this.state.firstName,
+            address1:this.state.firstName,
+            address2:this.state.firstName,
+            city:this.state.firstName,
+            state:this.state.firstName,
+            zip:this.state.firstName,
+            phone:this.state.firstName,
+            cardnum:this.state.firstName,
+            expire:this.state.firstName,
+            cvv:this.state.firstName,
+            billZip:this.state.firstName,
+        };
+        console.log('Submitting fetch', order);
+
+        fetch('/', {
+            method: 'POST',
+            body: JSON.stringify(order),
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(response => console.log('Order Submitted!'))
+        .then(() => {
+            this.setState({
+                formId: next
+            });
+        });
     }
 
     render() {
@@ -152,6 +205,7 @@ class App extends React.Component {
             currentPage = <F3 handleChange={this.handleChange} handleSubmit={this.handleSubmit} />;
             break;
             case 'Confirm':
+            currentPage = <Confirm info={this.state} handlePost={this.handlePost}/>
             break;
         }
 
