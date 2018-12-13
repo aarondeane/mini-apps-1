@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // Serve up static files
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 //Handle the client order post
 app.post('/', (req, res, next) => {
