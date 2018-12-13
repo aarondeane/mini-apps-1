@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS Order_List;
 
 Use Order_List;
 
-CREATE TABLE customerorders (
+CREATE TABLE orders (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     firstname VARCHAR(50),
     lastname VARCHAR(50),
@@ -17,5 +17,5 @@ CREATE TABLE customerorders (
     cardnum INT NOT NULL,
     expire INT NOT NULL,
     cvv INT NOT NULL,
-    billZip INT NOT NULL,
+    billzip INT NOT NULL
 );

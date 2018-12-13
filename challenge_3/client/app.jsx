@@ -168,7 +168,8 @@ class App extends React.Component {
             this.setState({
                 formId: next
             });
-        });
+        })
+        .catch(error => console.error('Error:', error));
     }
 
     render() {
