@@ -155,23 +155,7 @@ class App extends React.Component {
     handlePost(event) {
         event.preventDefault();
         let next = event.target.id;
-        let order = {
-            'First Name': this.state.firstName,
-            'Last Name':this.state.firstName,
-            'Email':this.state.firstName,
-            password:this.state.firstName,
-            address1:this.state.firstName,
-            address2:this.state.firstName,
-            city:this.state.firstName,
-            state:this.state.firstName,
-            zip:this.state.firstName,
-            phone:this.state.firstName,
-            cardnum:this.state.firstName,
-            expire:this.state.firstName,
-            cvv:this.state.firstName,
-            billZip:this.state.firstName,
-        };
-        console.log('Submitting fetch', order);
+        let order = this.state;
 
         fetch('/', {
             method: 'POST',
