@@ -10,6 +10,7 @@ h1 {
             "status status status status status status status status"
             "col1 col2 col3 col4 col5 col6 col7 col8";
     justify-items: center;
+    background-color: yellow;
 }
 
 .status{
@@ -44,4 +45,6 @@ h1 {
 .square {
     width: 50px;
     height: 50px;
+    border: 1px solid black;
+    border-radius: 50%;
 }
