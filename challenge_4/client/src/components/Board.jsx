@@ -1,11 +1,7 @@
 import React from 'react';
 
 const Square = (props) => {
-    return (
-        <button className="square">
-            {props.value}
-        </button>
-    );   
+    return (<button className="square">{props.value}</button>);   
 }
 
 class Board extends React.Component {
@@ -21,16 +17,12 @@ class Board extends React.Component {
                 [null,null,null,null,null,null],
                 [null,null,null,null,null,null]
                 ],
-            // squares: Array(56).fill(null),
             player1Next: true,
         };
         this.handleClick = this.handleClick.bind(this);
     }
     renderSquare(i,j) {
-        return (<Square value={this.state.squares[i][j]}
-            // onClick={() => this.handleClick(i)}
-            />
-        );
+        return (<Square value={this.state.squares[i][j]} />);
     }
     handleClick(e) {
         const squares = this.state.squares.slice();
@@ -46,6 +38,12 @@ class Board extends React.Component {
 
         if(!squareVals.includes('1') && !squareVals.includes('2')) {
             squares[colId][5] = this.state.player1Next ? '1' : '2';
+        }
+
+        for(var i = 0; i < squareVals - 1; i++) {
+            if(squareVals[i] !== "") {
+                squares[colId][i-1] = this.state.player1Next ? 'X' : 'O';
+            }
         }
         
         // squares[i] = this.state.player1Next ? '1' : '2';
